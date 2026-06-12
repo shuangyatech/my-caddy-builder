@@ -20,7 +20,7 @@ jobs:
         with:
           goos: ${{ matrix.goos }}
           goarch: ${{ matrix.goarch }}
-          caddy-version: v2.10.2
+          caddy-version: v2.11.2
           modules: |
             github.com/darkweak/souin/plugins/caddy
             github.com/darkweak/storages/simplefs/caddy
