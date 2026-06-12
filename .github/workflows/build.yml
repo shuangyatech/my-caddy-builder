@@ -1,0 +1,31 @@
+name: build
+
+on:
+  push:
+    branches:
+    - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        goos: linux
+        goarch: arm64
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: azolfagharj/action-caddy-builder@v1
+        id: build
+        with:
+          goos: ${{ matrix.goos }}
+          goarch: ${{ matrix.goarch }}
+          caddy-version: v2.10.2
+          modules: |
+            github.com/darkweak/souin/plugins/caddy
+            github.com/darkweak/storages/simplefs/caddy
+      - uses: actions/upload-artifact@v7
+        with:
+          name: caddy-${{ matrix.goos }}-${{ matrix.goarch }}
+          path: ${{ steps.build.outputs.caddy-path }}
+          retention-days: 3
