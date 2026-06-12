@@ -8,14 +8,14 @@ on:
 
 jobs:
   build:
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         goos: [linux]
         goarch: [arm64]
-    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: azolfagharj/action-caddy-builder@v1
+      - uses: azolfagharj/action-caddy-builder@v1.0.7
         id: build
         with:
           goos: ${{ matrix.goos }}
