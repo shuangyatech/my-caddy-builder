@@ -10,8 +10,8 @@ jobs:
   build:
     strategy:
       matrix:
-        goos: linux
-        goarch: arm64
+        goos: [linux]
+        goarch: [arm64]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
